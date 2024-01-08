@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: client-container
+        image: nevdread/client
+        ports:
+        - containerPort: 3000  # Update the container port to match your application
+        resources:
+          limits:
+            cpu: "2"     # Specify the CPU limit (e.g., 2 cores)
+            memory: "1512Mi" # Specify the memory limit (e.g., 1512 megabytes)
+          requests:
+            cpu: "0.5"     # Specify the CPU request (e.g., 0.5 cores)
+            memory: "512Mi" # Specify the memory request (e.g., 512 megabytes)
